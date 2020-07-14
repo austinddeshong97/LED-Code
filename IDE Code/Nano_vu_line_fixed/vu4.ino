@@ -1,7 +1,6 @@
 /*
  * VU: Rainbow from bottom or middle, green through purple
  */
-//#define __min(a,b) ((a)<(b)?(a):(b))
 
 void vu4(bool is_centered, uint8_t channel) {
   
