@@ -23,7 +23,6 @@
 # define N_PIXELS_HALF (N_PIXELS / 2)
 # define PATTERN_TIME 10            // Seconds to show eaach pattern on auto [10]
 # define STEREO true                // If true, L&R channels are independent. If false, both L&R outputs display same data from L audio channel [true]
-#define __min(a,b) ((a)<(b)?(a):(b))
 
 uint8_t volCountLeft = 0;           // Frame counter for storing past volume data
 uint16_t volLeft[SAMPLES];               // Collection of prior volume samples
