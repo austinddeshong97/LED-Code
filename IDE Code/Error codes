@@ -1,0 +1,107 @@
+Arduino: 1.8.13 (Mac OS X), Board: "DOIT ESP32 DEVKIT V1, 80MHz, 115200, None"
+
+WARNING: library JC_Button claims to run on avr architecture(s) and may be incompatible with your current board which runs on esp32 architecture(s).
+In file included from /Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino:5:0:
+/Users/jared/Documents/Arduino/libraries/FastLED/FastLED.h:14:21: note: #pragma message: FastLED version 3.003.003
+ #    pragma message "FastLED version 3.003.003"
+                     ^
+In file included from /Users/jared/Documents/Arduino/libraries/FastLED/FastLED.h:65:0,
+                 from /Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino:5:
+/Users/jared/Documents/Arduino/libraries/FastLED/fastspi.h:130:23: note: #pragma message: No hardware SPI pins defined.  All SPI access will default to bitbanged output
+ #      pragma message "No hardware SPI pins defined.  All SPI access will default to bitbanged output"
+                       ^
+/Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino: In function 'uint16_t auxReading(uint8_t)':
+Nano_vu_line:243:27: error: no matching function for call to 'min(uint16_t&, int)'
+   height = min(height, TOP);
+                           ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:62:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3451:5: note: candidate: template<class _Tp, class _Compare> _Tp std::min(std::initializer_list<_Tp>, _Compare)
+     min(initializer_list<_Tp> __l, _Compare __comp)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3451:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino:243:27: note:   mismatched types 'std::initializer_list<_Tp>' and 'short unsigned int'
+   height = min(height, TOP);
+                           ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:62:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3445:5: note: candidate: template<class _Tp> _Tp std::min(std::initializer_list<_Tp>)
+     min(initializer_list<_Tp> __l)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3445:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino:243:27: note:   mismatched types 'std::initializer_list<_Tp>' and 'short unsigned int'
+   height = min(height, TOP);
+                           ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:61:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:243:5: note: candidate: template<class _Tp, class _Compare> const _Tp& std::min(const _Tp&, const _Tp&, _Compare)
+     min(const _Tp& __a, const _Tp& __b, _Compare __comp)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:243:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino:243:27: note:   deduced conflicting types for parameter 'const _Tp' ('short unsigned int' and 'int')
+   height = min(height, TOP);
+                           ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:61:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:195:5: note: candidate: template<class _Tp> const _Tp& std::min(const _Tp&, const _Tp&)
+     min(const _Tp& __a, const _Tp& __b)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:195:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/Nano_vu_line.ino:243:27: note:   deduced conflicting types for parameter 'const _Tp' ('short unsigned int' and 'int')
+   height = min(height, TOP);
+                           ^
+/Users/jared/Documents/Arduino/Nano_vu_line/vu4.ino: In function 'void vu4(bool, uint8_t)':
+vu4:31:62: error: no matching function for call to 'min(uint16_t&, int)'
+       uint8_t numBlack = (N_PIXELS - min(height, N_PIXELS - 1)) / 2;
+                                                              ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:62:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3451:5: note: candidate: template<class _Tp, class _Compare> _Tp std::min(std::initializer_list<_Tp>, _Compare)
+     min(initializer_list<_Tp> __l, _Compare __comp)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3451:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/vu4.ino:31:62: note:   mismatched types 'std::initializer_list<_Tp>' and 'short unsigned int'
+       uint8_t numBlack = (N_PIXELS - min(height, N_PIXELS - 1)) / 2;
+                                                              ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:62:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3445:5: note: candidate: template<class _Tp> _Tp std::min(std::initializer_list<_Tp>)
+     min(initializer_list<_Tp> __l)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algo.h:3445:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/vu4.ino:31:62: note:   mismatched types 'std::initializer_list<_Tp>' and 'short unsigned int'
+       uint8_t numBlack = (N_PIXELS - min(height, N_PIXELS - 1)) / 2;
+                                                              ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:61:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:243:5: note: candidate: template<class _Tp, class _Compare> const _Tp& std::min(const _Tp&, const _Tp&, _Compare)
+     min(const _Tp& __a, const _Tp& __b, _Compare __comp)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:243:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/vu4.ino:31:62: note:   deduced conflicting types for parameter 'const _Tp' ('short unsigned int' and 'int')
+       uint8_t numBlack = (N_PIXELS - min(height, N_PIXELS - 1)) / 2;
+                                                              ^
+In file included from /Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/algorithm:61:0,
+                 from /Users/jared/Library/Arduino15/packages/esp32/hardware/esp32/1.0.4/cores/esp32/Arduino.h:142,
+                 from sketch/Nano_vu_line.ino.cpp:1:
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:195:5: note: candidate: template<class _Tp> const _Tp& std::min(const _Tp&, const _Tp&)
+     min(const _Tp& __a, const _Tp& __b)
+     ^
+/Users/jared/Library/Arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/1.22.0-80-g6c4433a-5.2.0/xtensa-esp32-elf/include/c++/5.2.0/bits/stl_algobase.h:195:5: note:   template argument deduction/substitution failed:
+/Users/jared/Documents/Arduino/Nano_vu_line/vu4.ino:31:62: note:   deduced conflicting types for parameter 'const _Tp' ('short unsigned int' and 'int')
+       uint8_t numBlack = (N_PIXELS - min(height, N_PIXELS - 1)) / 2;
+                                                              ^
+exit status 1
+no matching function for call to 'min(uint16_t&, int)'
+
+
+This report would have more information with
+"Show verbose output during compilation"
+option enabled in File -> Preferences.
