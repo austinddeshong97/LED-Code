@@ -3,7 +3,7 @@
 #define FASTLED_ALLOW_INTERRUPTS 0
 #include <FastLED.h>
 #include <WiFi.h>
-#include <WiFiUDP.h>
+#include <esp_now.h>
 #include "reactive_common.h"
 
 #define LED_PIN 5
@@ -18,10 +18,6 @@
 #define BUFFER_SIZE 3
 
 #define LAMP_ID 1
-WiFiUDP UDP;
-
-const char *ssid = "sound_reactive"; // The SSID (name) of the Wi-Fi network you want to connect to
-const char *password = "123456789";  // The password of the Wi-Fi network
 
 CRGB leds[NUM_LEDS];
 
@@ -46,7 +42,11 @@ const int heartBeatInterval = 100;
 bool fade = false;
 
 struct led_command cmd;
-void connectToWifi();
+typedef struct test_struct {
+  int x;
+  int y;
+} test_struct;
+test_struct myData;
 
 void setup()
 {
@@ -64,49 +64,18 @@ void setup()
   delay(10);
   Serial.println('\n');
 
-  WiFi.begin(ssid, password); // Connect to the network
-  Serial.print("Connecting to ");
-  Serial.print(ssid);
-  Serial.println(" ...");
-
-  connectToWifi();
-  sendHeartBeat();
-  UDP.begin(7001);
-}
-
-void sendHeartBeat() {
-    struct heartbeat_message hbm;
-    hbm.client_id = LAMP_ID;
-    hbm.chk = 77777;
-    Serial.println("Sending heartbeat");
-    IPAddress ip(192,168,4,1);
-    UDP.beginPacket(ip, 7171); 
-    int ret = UDP.write((uint8_t*)&hbm,sizeof(hbm));
-    printf("Returned: %d, also sizeof hbm: %d \n", ret, sizeof(hbm));
-    UDP.endPacket();
-    lastHeartBeatSent = millis();
-}
-
-void loop()
-{
-  if (millis() - lastHeartBeatSent > heartBeatInterval) {
-    sendHeartBeat();
-  }
-
-
   
-  int packetSize = UDP.parsePacket();
-  if (packetSize)
-  {
-    UDP.read((char *)&cmd, sizeof(struct led_command));
-    lastReceived = millis();
-  }
+  Serial.print("Connecting to ");
 
-  if(millis() - lastReceived >= 5000)
-  {
-    connectToWifi();
-  }
-    
+  Serial.println(" ...");
+  //esp_now_set_self_role(ESP_NOW_ROLE_SLAVE);
+  
+  esp_now_register_recv_cb(OnDataRecv);
+}
+
+void loop(){
+  
+
   int opMode = cmd.opmode;
   int analogRaw = cmd.data;
 
@@ -127,7 +96,9 @@ void loop()
   }
   
 }
-
+void OnDataRecv(uint8_t cmd, uint8_t led_command, uint8_t myData) {
+  memcpy(&myData, led_command, sizeof(myData));
+}
 void allWhite() {
   for (int i = 0; i < NUM_LEDS; i++) {
     leds[i] = CRGB(255, 255, 235);
