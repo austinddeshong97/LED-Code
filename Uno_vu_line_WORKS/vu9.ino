@@ -30,9 +30,7 @@ void vu9() {
 
 void sndwave() {
 
-  int sampleLeft = abs(analogRead(LEFT_IN_PIN) - 512);
-  Serial.print(sampleLeft);
-  sampleLeft = sampleLeft * ((float)sensitivity / 512);
+  int sampleLeft = abs(analogRead(LEFT_IN_PIN) - 512 - DC_OFFSET);
 
   ledsLeft[N_PIXELS / 2] = ColorFromPalette(currentPalette, sampleLeft, sampleLeft * 2, LINEARBLEND); // Put the sample into the center
   
@@ -43,7 +41,5 @@ void sndwave() {
   for (int i = 0; i < N_PIXELS / 2; i++) { // move to the right    // Copy to the right, and let the fade do the rest.
     ledsLeft[i] = ledsLeft[i + 1];
   }
-
-  averageReadings(0);
 
 }

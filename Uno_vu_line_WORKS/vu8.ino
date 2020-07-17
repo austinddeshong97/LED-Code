@@ -15,7 +15,7 @@ void vu8() {
   static bool growing = false;
   static bool fall_from_left = true;
   
-  int intensity = auxReading(0) * N_PIXELS_HALF;
+  int intensity = auxReading(0);
   
   //// Update Origin ////
   // detect peak change and save origin at curve vertex
@@ -81,6 +81,6 @@ void vu8() {
   averageReadings(0);
 
   EVERY_N_MILLISECONDS(20) {
-    scroll_color = (scroll_color + 1) % 255;
+    scroll_color = ++scroll_color % 255;
   }
 }

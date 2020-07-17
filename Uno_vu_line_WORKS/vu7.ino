@@ -32,14 +32,14 @@ void soundmems() { // Rolling average counter - means we don't have to go throug
   static unsigned long samplesum;
   static unsigned long oldtime;
   unsigned long newtime = millis();
-  unsigned int sample = abs(analogRead(LEFT_IN_PIN) - 512) * (float)sensitivity / 512;
+  unsigned int sample = abs(analogRead(LEFT_IN_PIN) -512);
   
   samplesum = samplesum + sample - volLeft[samplecount]; // Add the new sample and remove the oldest sample in the array 
   sampleavg = samplesum / SAMPLES; // Get an average
   volLeft[samplecount] = sample; // Update oldest sample in the array with new sample
   samplecount = (samplecount + 1) % SAMPLES; // Update the counter for the array
 
-  if ((sample > (sampleavg + map(sensitivity, 0, 1023, 200, 0))) && (newtime > (oldtime + 100))) { // Check for a peak, which is map(sensitivity) > the average, but wait at least 100ms for another.
+  if ((sample > (sampleavg + 50)) && (newtime > (oldtime + 100))) { // Check for a peak, which is 50 > the average, but wait at least 100ms for another.
     rippleStep = -1;
     peakcount++;
     oldtime = newtime;
@@ -53,7 +53,7 @@ void ripple3(bool show_background) {
   
   if(show_background) {
     for (int i = 0; i < N_PIXELS; i++) {
-      ledsLeft[i] = CHSV(bgcol, 255, constrain(sampleavg + map(sensitivity, 0, 1023, 0, 100), 0, 255)); // Set the background colour.
+      ledsLeft[i] = CHSV(bgcol, 255, sampleavg * 2); // Set the background colour.
     }
   } else {
     fadeToBlackBy(ledsLeft, N_PIXELS, 64);
