@@ -1,14 +1,16 @@
+#include <ESP32httpUpdate.h>
 #include <FastLED.h>
 #include <EEPROM.h>
 #include <JC_Button.h>
 
-# define LEFT_OUT_PIN 6             // Left channel data out pin to LEDs [6]
-# define RIGHT_OUT_PIN 5            // Right channel data out pin to LEDs [5]
-# define LEFT_IN_PIN A5             // Left aux in signal [A5]
-# define RIGHT_IN_PIN A4            // Right aux in signal [A4]
+
+# define LEFT_OUT_PIN 12             // Left channel data out pin to LEDs [6]
+# define RIGHT_OUT_PIN 13            // Right channel data out pin to LEDs [5]
+# define LEFT_IN_PIN 34             // Left aux in signal [A5]
+# define RIGHT_IN_PIN 35            // Right aux in signal [A4]
 # define BRIGHTNESS_PIN 17          // Brightness potentiometer in [A2]
-# define SENSITIVITY_PIN A1         // Sensitivity potentiometer in [A1]
-# define BTN_PIN 3                  // Push button on this pin [3]
+# define SENSITIVITY_PIN 16         // Sensitivity potentiometer in [A1]
+# define BTN_PIN 18                  // Push button on this pin [3]
 # define DEBOUNCE_MS 20             // Number of ms to debounce the button [20]
 # define LONG_PRESS 500             // Number of ms to hold the button to count as long press [500]
 # define N_PIXELS 30                // Number of pixels in each string [18]
@@ -16,13 +18,14 @@
 # define COLOR_ORDER GRB            // Colour order of LED strip [GRB]
 # define LED_TYPE WS2812B           // LED string type [WS2812B]
 # define DC_OFFSET 0                // DC offset in aux signal [0]
-# define NOISE 20                    // Noise/hum/interference in aux signal [0]
-# define SAMPLES 5//64                 // Length of buffer for dynamic level adjustment [64]
+# define NOISE 0                    // Noise/hum/interference in aux signal [0]
+# define SAMPLES 64                 // Length of buffer for dynamic level adjustment [64]
 # define TOP (N_PIXELS + 2)         // Allow dot to go slightly off scale [(N_PIXELS + 2)]
 # define PEAK_FALL 20               // Rate of peak falling dot [20]
 # define N_PIXELS_HALF (N_PIXELS / 2)
 # define PATTERN_TIME 10            // Seconds to show eaach pattern on auto [10]
-# define STEREO false                // If true, L&R channels are independent. If false, both L&R outputs display same data from L audio channel [true]
+# define STEREO true                // If true, L&R channels are independent. If false, both L&R outputs display same data from L audio channel [true]
+
 
 uint8_t volCountLeft = 0;           // Frame counter for storing past volume data
 uint16_t volLeft[SAMPLES];               // Collection of prior volume samples
@@ -89,7 +92,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(sensitivity);
+
   // Read button
   modeBtn.read();
   switch (state) {
@@ -203,7 +206,6 @@ void loop() {
       break;
   }
   sensitivity = analogRead(SENSITIVITY_PIN);
-  Serial.println(LEFT_IN_PIN);
   FastLED.setBrightness(map(analogRead(BRIGHTNESS_PIN), 0, 1023, 0, 255));
 
 }
@@ -237,7 +239,7 @@ uint16_t auxReading(uint8_t channel) {
     // Calculate bar height based on dynamic min/max levels (fixed point):
     height = TOP * (lvlRight - minLvlAvgRight) / (long)(maxLvlAvgRight - minLvlAvgRight);
   }
-  height = min(height, TOP);
+  height = _min(height, TOP);
   return height;
 }
 
